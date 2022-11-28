@@ -18,7 +18,17 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 		getTeamWorkData();
 		setInterval(async () => getTeamWorkData(), 120000);
 	}, []);
+	const [style, setStyle] = useState();
+	const [isActive, setIsActive] = useState(false);
+	const [isActive1, setActive1] = useState(false);
 
+	const handleClick = () => {
+		// setIsActive(current => !current);
+
+		setIsActive(!isActive);
+		setActive1(!isActive1);
+		// setStyle('max');
+	};
 	const [totalTickets, setTotalTickets] = useState(0);
 	const [completedTask, setCompletedTask] = useState(0);
 	const [sleepingTask, setSleepingTask] = useState(0);
@@ -98,7 +108,6 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 				// setLoading(false);
 			});
 	};
-
 	useEffect(() => {
 		setTopStatisticsCount(() => {
 			return {
@@ -128,99 +137,116 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 	}, [timer]);
 	return (
 		<>
-		<div className={styles.bigdashboard}>
-			<Helmet>
-				<meta name='apple-mobile-web-app-capable' content='yes' />
-			</Helmet>
-			<div className={styles.teamWork}>
-				<div className={styles.outertopStatisticsBar}>
-					<div className={styles.topStatisticsBarTeam}>
-						{/* <div className={styles.topStatsContainer}> */}
-						<TopStatistics text={'Tasks Today'} count={topStatisticsCount.tasksToday} />
-						<TopStatistics text={'Team Load'} count={totalTickets} />
-						<TopStatistics text={'Completions'} count={completedTask} />
-						<div className='sleeping-text'>
-							<TopStatistics
-								text={'Sleeping'}
-								count={
-									<a
-										href='https://redwing.puneetpugalia.com/pages/sleeping_task.php'
-										target='_blank'
-										style={{ color: 'white' }}
-									>
-										{data.sleeping_tasks}
-									</a>
-								}
+			<div className={styles.bigdashboard}>
+				<Helmet>
+					<meta name='apple-mobile-web-app-capable' content='yes' />
+				</Helmet>
+				<div
+					// className={styles.teamWork}
+					className={/*isActive ? 'styles.active' : */styles.teamWork}
+					// className={style}
+					// style={{
+						// width: isActive ? '100%' : '50%'
+						//   color: isActive ? 'white' : '',
+					// }}
+					// onClick={handleClick}
+				>
+					<div className={styles.outertopStatisticsBar}>
+						<div className={styles.topStatisticsBarTeam}>
+							{/* <div className={styles.topStatsContainer}> */}
+							<TopStatistics text={'Tasks Today'} count={topStatisticsCount.tasksToday} />
+							<TopStatistics text={'Team Load'} count={totalTickets} />
+							<TopStatistics text={'Completions'} count={completedTask} />
+							<div className='sleeping-text'>
+								<TopStatistics
+									text={'Sleeping'}
+									count={
+										<a
+											href='https://redwing.puneetpugalia.com/pages/sleeping_task.php'
+											target='_blank'
+											style={{ color: 'white' }}
+										>
+											{data.sleeping_tasks}
+										</a>
+									}
+								/>
+							</div>
+							{/* </div> */}
+						</div>
+						<div onClick={handleClick}>
+							<OpenInFullIcon
+								className='full-icon'
+								// style={{
+									// width: isActive ? '150%' : '50%'
+									//   color: isActive ? 'white' : '',
+								// }}
+								// className={style}
 							/>
 						</div>
-						{/* </div> */}
 					</div>
-					<div>
-						<OpenInFullIcon className='full-icon' />
+					<div className={styles.alignTeamContent}>
+						<TeamWork
+							isInverted={false}
+							screenIndex={2}
+							showTeamTabTop={false}
+							showTabComponent={false}
+							showActionButtons={false}
+						/>
 					</div>
 				</div>
-				<div className={styles.alignTeamContent}>
-					<TeamWork
-						isInverted={false}
-						screenIndex={2}
-						showTeamTabTop={false}
-						showTabComponent={false}
-						showActionButtons={false}
-					/>
-				</div>
-			</div>
 
-			<div className={styles.activity }  style={{
-          width: topStatisticsCount.hoursOfWeek === 0 ? '0' : '100%',
-         
-        }}>
-				<div className={styles.outertopStatisticsBar}>
-					<div className={styles.topStatisticsBar}>
-
-						<TopStatistics text={'Hours of work'} count={topStatisticsCount.hoursOfWeek} />
-						<TopStatistics text={'Completion'} count={topStatisticsCount.completion} />
+				<div
+				
+						className={styles.teamWork}
+					
+					style={{
+						width: topStatisticsCount.hoursOfWeek === 0 ? '0' : '100%'
+					}}
+				>
+					<div className={styles.outertopStatisticsBar}>
+						<div className={styles.topStatisticsBar}>
+							<TopStatistics text={'Hours of work'} count={topStatisticsCount.hoursOfWeek} />
+							<TopStatistics text={'Completion'} count={topStatisticsCount.completion} />
+						</div>
+						<>
+							<OpenInFullIcon className='full-icon-projects' />
+						</>
 					</div>
-					<>
-						<OpenInFullIcon className='full-icon-projects' />
-					</>
-				</div>
-				<div className={styles.alignActivitiesContent}>
-					<ActivitiesColumn
-						setTopStatisticsCount={setTopStatisticsCount}
-						setSelectedProject={setSelectedProject}
-						selectedProject={selectedProject}
-					/>
-				</div>
-			</div>
-			<div className={styles.project}>
-				<div className={styles.outertopStatisticsBar}>
-					<div className={styles.topStatisticsBar}>
-						<TopStatistics text={'Worth Orders'} count={topStatisticsCount.worthOrders} />
-					</div>
-					<div>
-						<OpenInFullIcon className='full-icon-projects' />
+					<div className={styles.alignActivitiesContent}>
+						<ActivitiesColumn
+							setTopStatisticsCount={setTopStatisticsCount}
+							setSelectedProject={setSelectedProject}
+							selectedProject={selectedProject}
+						/>
 					</div>
 				</div>
-				<div className={styles.alignProjectsContent}>
-					<ProjectsColumn setTopStatisticsCount={setTopStatisticsCount} />
+				<div className={styles.project}>
+					<div className={styles.outertopStatisticsBar}>
+						<div className={styles.topStatisticsBar}>
+							<TopStatistics text={'Worth Orders'} count={topStatisticsCount.worthOrders} />
+						</div>
+						<div>
+							<OpenInFullIcon className='full-icon-projects' />
+						</div>
+					</div>
+					<div className={styles.alignProjectsContent}>
+						<ProjectsColumn setTopStatisticsCount={setTopStatisticsCount} />
+					</div>
 				</div>
-			</div>
-			{/* <BelowTeamWork /> */}
-			{/* <div className='big-dashboard-footer' style={{ margin: '1rem' }}> */}
+				{/* <div className='big-dashboard-footer' style={{ margin: '1rem' }}> */}
 				{/* <Link to='/homepage' onClick={scrollTop}> */}
-					{/* Go to Homepage */}
+				{/* Go to Homepage */}
 				{/* </Link> */}
-			{/* </div> */}
-		</div>
-	
-		<div className='big-dashboard-footer' style={{ margin: '1rem' }}>
-		<Link to='/homepage' onClick={scrollTop}>
-			Go to Homepage
-		</Link>
-	</div>
-	</>
+				{/* </div> */}
+			</div>
+			<BelowTeamWork />-
+			<div className='big-dashboard-footer' style={{ margin: '1rem' }}>
+				<Link to='/homepage' onClick={scrollTop}>
+					Go to Homepage
+				</Link>
+			</div>
+		</>
 	);
 };
-
 export default BigDashboard;
 
