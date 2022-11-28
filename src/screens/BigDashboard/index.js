@@ -197,7 +197,7 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 
 				<div
 				
-						className={styles.teamWork}
+						className={/*isActive1 ? 'styles.active1' : */styles.teamWork}
 					
 					style={{
 						width: topStatisticsCount.hoursOfWeek === 0 ? '0' : '100%'
