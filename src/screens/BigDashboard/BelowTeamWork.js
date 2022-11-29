@@ -6,7 +6,7 @@ import './style.css';
 const BelowTeamWork = props => {
 	const [absent, setAbsent] = useState(0);
 	const [slowdown, setSlowdown] = useState(0);
-	const [idle, setIdle] = useState(1);
+	const [idle, setIdle] = useState(0);
 	const [names, setName] = useState();
 	let data = JSON.parse(localStorage.getItem('redwing_data'));
 	console.log('DATA', data);
@@ -15,13 +15,15 @@ const BelowTeamWork = props => {
 			if (user?.avatar !== '' && user?.name.split(' ')[0] !== 'Kajal') {
 				user?.active_todo_count === 0
 					? setAbsent(prev => prev + 1)
-					: moment().diff(moment(user?.last_active_at), 'hours') >= 3
-					? setSlowdown(prev => prev + 1)
-					: setIdle(prev => prev + 1);
-				// setNames(user.name)
-				console.log(user.name);
-				// setAbsent(user.name)
+					: moment().diff(moment(user?.last_active_at), 'hours') >= 3 &&
+					  setSlowdown(prev => prev + 1);
 			}
+			user?.tasks_count === 0 && setIdle(prev => prev + 1);
+			// && user?.projects.tasks_count === 0
+			// setNames(user.name
+
+			// console.log(user.name);
+			// setAbsent(user.name)
 		});
 		// return (unsub)=>{
 		// /unsub();
@@ -53,20 +55,15 @@ const BelowTeamWork = props => {
 
 	data.users.map(user => {
 		if (
-			user.active_todo_count !== 0 &&
 			user?.avatar !== '' &&
+			user?.tasks_count === 0
 			// user?.name.split(' ')[0] !== 'Kajal' &&
-			moment().diff(moment(user?.last_active_at), 'hours') < 3
+			// moment().diff(moment(user?.last_active_at), 'hours') < 3
 		) {
-
-
 			idle_st.push(user.name.split(' ')[0]);
-
 		}
-
 	});
-	idle_st.push('Kajal');
-
+	// idle_st.push('Kajal');
 
 	console.log('ABSENT', absent_st);
 	console.log('🚀🚀', names);
