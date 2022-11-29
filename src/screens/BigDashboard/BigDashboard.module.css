@@ -17,24 +17,25 @@
 	/* grid-template-areas: 'a b c'; */
 	overflow-y: hidden;
 }
-.active{
+.active {
 	/* display: none; */
 	/* z-index: 10; */
 	width: 100%;
 	/* background: white; */
-
 }
-.active1{
-/* width: 0%; */
-/* background: white; */
+.active1 {
+	/* width: 0%; */
+	/* background: white; */
 
-/* background: whitesmoke; */
-	/* display: none; */
-	width: 100%;
-
+	/* background: whitesmoke; */
+	display: none;
+	/* width: 0%; */
 }
 .active2{
-	width: 100%;
+	display: none;
+
+	
+
 }
 .sleeping-text {
 	font-size: 25px;
@@ -50,14 +51,14 @@
 	/* grid-area: c;
 	width: 50%;
 	 */
-	 /* display: none; */
-    width: 30%;
+	/* display: none; */
+	min-width: 30%;
 
 	background: linear-gradient(175.2deg, #270a1f 0%, rgba(0, 0, 0, 0) 101.53%);
 }
 .teamWork {
 	/* grid-area: 50%; */
-	width: 50%;
+	min-width: 50%;
 	background: linear-gradient(175.2deg, #0c0a27 0%, rgba(0, 0, 0, 0) 101.53%);
 }
 

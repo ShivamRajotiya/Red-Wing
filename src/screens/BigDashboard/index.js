@@ -156,13 +156,13 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 				</Helmet>
 				<div
 					// className={styles.teamWork}
-					className={isActive ? styles.active : styles.teamWork}
+					className={isActive ? styles.active : (isActive1 ? styles.active1 :(isActive2 ? styles.active1 : styles.teamWork))}
 					// className={}
 					// style={{
 						// width: isActive ? '100%' : '50%'
 						//   color: isActive ? 'white' : '',
 					// }}
-					// onClick={handleClick
+					// onClick={handleClick}
 				>
 					<div className={styles.outertopStatisticsBar}>
 						<div className={styles.topStatisticsBarTeam}>
@@ -211,7 +211,7 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 
 				<div
 				
-						className={isActive1 ? styles.active1 : styles.Activity}
+						className={isActive ? styles.active1 : (isActive1 ? styles.active :(isActive2 ? styles.active1 : styles.Activity))}
 					
 					style={{
 						display: topStatisticsCount.hoursOfWeek === 0 ? 'none' : ''
@@ -234,7 +234,7 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 						/>
 					</div>
 				</div>
-				<div className={ isActive2 ? styles.activity ={display:'none'}  :styles.project}>
+				<div className={ isActive ? styles.active1  :(isActive1 ? styles.active1 :(isActive2 ? styles.active : styles.project))}>
 					<div className={styles.outertopStatisticsBar}>
 						<div className={styles.topStatisticsBar}>
 							<TopStatistics text={'Worth Orders'} count={topStatisticsCount.worthOrders} />
