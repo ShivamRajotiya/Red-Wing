@@ -20,15 +20,28 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 	}, []);
 	const [style, setStyle] = useState();
 	const [isActive, setIsActive] = useState(false);
-	const [isActive1, setActive1] = useState(false);
+	const [isActive1, setIsActive1] = useState(false);
+	const [isActive2, setIsActive2] = useState(false);
 
 	const handleClick = () => {
 		// setIsActive(current => !current);
 
 		setIsActive(!isActive);
-		setActive1(!isActive1);
+		// setIsActive1(!isActive1);
 		// setStyle('max');
 	};
+	const handleClick1 = () => {
+		// setIsActive(current => !c
+		// setIsActive(!isActive);
+		setIsActive1(!isActive1);
+		// setStyle('max');
+	};
+	const handleClick2 = () => {
+		// setIsActive(current => !c
+		// setIsActive(!isActive);
+		setIsActive2(!isActive2);
+		// setStyle('max');
+	}
 	const [totalTickets, setTotalTickets] = useState(0);
 	const [completedTask, setCompletedTask] = useState(0);
 	const [sleepingTask, setSleepingTask] = useState(0);
@@ -143,13 +156,13 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 				</Helmet>
 				<div
 					// className={styles.teamWork}
-					className={/*isActive ? 'styles.active' : */styles.teamWork}
-					// className={style}
+					className={isActive ? styles.active : styles.teamWork}
+					// className={}
 					// style={{
 						// width: isActive ? '100%' : '50%'
 						//   color: isActive ? 'white' : '',
 					// }}
-					// onClick={handleClick}
+					// onClick={handleClick
 				>
 					<div className={styles.outertopStatisticsBar}>
 						<div className={styles.topStatisticsBarTeam}>
@@ -173,7 +186,7 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 							</div>
 							{/* </div> */}
 						</div>
-						<div onClick={handleClick}>
+						<div >
 							<OpenInFullIcon
 								className='full-icon'
 								// style={{
@@ -181,6 +194,7 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 									//   color: isActive ? 'white' : '',
 								// }}
 								// className={style}
+								onClick={handleClick}
 							/>
 						</div>
 					</div>
@@ -197,10 +211,10 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 
 				<div
 				
-						className={/*isActive1 ? 'styles.active1' : */styles.teamWork}
+						className={isActive1 ? styles.active1 : styles.Activity}
 					
 					style={{
-						width: topStatisticsCount.hoursOfWeek === 0 ? '0' : '100%'
+						display: topStatisticsCount.hoursOfWeek === 0 ? 'none' : ''
 					}}
 				>
 					<div className={styles.outertopStatisticsBar}>
@@ -209,7 +223,7 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 							<TopStatistics text={'Completion'} count={topStatisticsCount.completion} />
 						</div>
 						<>
-							<OpenInFullIcon className='full-icon-projects' />
+							<OpenInFullIcon className='full-icon-projects' onClick={handleClick1}/>
 						</>
 					</div>
 					<div className={styles.alignActivitiesContent}>
@@ -220,13 +234,15 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 						/>
 					</div>
 				</div>
-				<div className={styles.project}>
+				<div className={ isActive2 ? styles.activity ={display:'none'}  :styles.project}>
 					<div className={styles.outertopStatisticsBar}>
 						<div className={styles.topStatisticsBar}>
 							<TopStatistics text={'Worth Orders'} count={topStatisticsCount.worthOrders} />
 						</div>
 						<div>
-							<OpenInFullIcon className='full-icon-projects' />
+							<OpenInFullIcon className='full-icon-projects'
+								onClick={handleClick2}
+								/>
 						</div>
 					</div>
 					<div className={styles.alignProjectsContent}>
