@@ -1,35 +1,42 @@
-.full-icon{
+.full-icon {
 	color: white;
 	border: 1px solid white;
-    margin-left: -85%;
-    /* padding-right: 20px; */
+	margin-left: -85%;
+	/* padding-right: 20px; */
 	/* margin-top: -12%; */
 	/* margin-top: -12%; */
-    cursor: pointer;
-  }
-.full-icon-projects{
-    color: white;
-border: 1px solid white;
-margin-left: 20px;
-/* margin-top: -100px; */
-cursor: pointer;
-
+	cursor: pointer;
 }
-.big-dashboard-footer a{
-    color: white;
+.full-icon-projects {
+	color: white;
+	border: 1px solid white;
+	margin-left: 20px;
+	/* margin-top: -100px; */
+	cursor: pointer;
 }
-.below-team-work{
-    margin-top: 20px;
-    margin-left: 20px;
-    color: white;
+.bg-projects {
+	background: linear-gradient(175.2deg, #270a1f 0%, rgba(0, 0, 0, 0) 101.53%);
+	/* width: 100%; */
 }
-.slowdown{
-    color: yellow;
-
+.bg-activity {
+	/* width: 100%; */
+	background: linear-gradient(175.2deg, #063437 0%, rgba(0, 0, 0, 0) 101.53%);
 }
-.absent{
-    color: red;
-
-
+.bg-teamWork {
+	background: linear-gradient(175.2deg, #0c0a27 0%, rgba(0, 0, 0, 0) 101.53%) ;
+	/* width: 100%; */
 }
-
+.big-dashboard-footer a {
+	color: white;
+}
+.below-team-work {
+	margin-top: 20px;
+	margin-left: 20px;
+	color: white;
+}
+.slowdown {
+	color: yellow;
+}
+.absent {
+	color: red;
+}
