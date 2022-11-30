@@ -282,7 +282,7 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 				{/* </Link> */}
 				{/* </div> */}
 			</div>
-			<BelowTeamWork />
+			{/* <BelowTeamWork /> */}
 			<div className='big-dashboard-footer' style={{ margin: '1rem' }}>
 				<Link to='/homepage' onClick={scrollTop}>
 					Go to Homepage

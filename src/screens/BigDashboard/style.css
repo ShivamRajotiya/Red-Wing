@@ -30,13 +30,19 @@
 	color: white;
 }
 .below-team-work {
+    /* display: flex; */
 	margin-top: 20px;
 	margin-left: 20px;
 	color: white;
-}
+    width: 300%;}
+
 .slowdown {
+    /* display: flex; */
+    /* flex-direction: row; */
 	color: yellow;
 }
 .absent {
+    /* display: flex; */
+    
 	color: red;
 }
