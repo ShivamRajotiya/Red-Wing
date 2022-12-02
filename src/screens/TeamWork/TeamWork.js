@@ -714,7 +714,7 @@ const TeamWork = ({
 													Member with less than 5 Ticks
 												</h2>
 												{users
-													.filter(user => user.completed_todo < 5)
+													.filter(user => user.completed_todo < 6 && user.completed_todo > 0)
 													.map((user, key) => {
 														return (
 															<TableRow
