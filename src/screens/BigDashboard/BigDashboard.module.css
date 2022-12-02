@@ -24,7 +24,6 @@
 	/* background: white; */
 
 	/* height: 100%; */
-
 }
 .active1 {
 	/* width: 0%; */
@@ -47,10 +46,10 @@
 .activity {
 	/* grid-area: b; */
 	/* transition: 2.7s; */
-
+	height: 100vh;
 	width: 20%;
 	/* width:10% ; */
-	background: linear-gradient(175.2deg, #063437 0%, rgba(0, 0, 0, 0) 101.53%)!important;
+	background: linear-gradient(175.2deg, #063437 0%, rgba(0, 0, 0, 0) 101.53%) !important;
 }
 .project {
 	/* grid-area: c;
@@ -60,7 +59,7 @@
 	min-width: 30%;
 	transition: 2.7s;
 
-	background: linear-gradient(175.2deg, #270a1f 0%, rgba(0, 0, 0, 0) 101.53%)!important;
+	background: linear-gradient(175.2deg, #270a1f 0%, rgba(0, 0, 0, 0) 101.53%) !important;
 }
 .teamWork {
 	/* grid-area: 50%; */
@@ -69,10 +68,8 @@
 	min-width: 50%;
 	background: linear-gradient(175.2deg, #0c0a27 0%, rgba(0, 0, 0, 0) 101.53%) !important;
 	/* background: red !important; */
-
 }
 
-.activity,
 .project,
 .teamWork {
 	width: 100%;
@@ -81,8 +78,8 @@
 	/* transition: 3.7s; */
 }
 /* .team{ */
-	/* display: flex; */
-	/* flex-direction: column; */
+/* display: flex; */
+/* flex-direction: column; */
 /* } */
 /* .topStatsContainer{ */
 /* display: flex; */

@@ -15,6 +15,7 @@ import {
 	CardContent,
 	TextField
 } from '@material-ui/core';
+
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import CloseIcon from '@material-ui/icons/Close';
 import { Typography } from '@material-ui/core';
@@ -55,7 +56,9 @@ const TeamWork = ({
 	isInverted,
 	showTeamTabTop = true,
 	showTabComponent = true,
-	showActionButtons = true
+	showActionButtons = true,
+	tabSection,
+	redwingproject
 }) => {
 	const [tabValue, setTabValue] = useState('Team');
 	const localStorageData = localStorage.getItem('redwing_data');
@@ -80,6 +83,7 @@ const TeamWork = ({
 		getTeamWorkData();
 		setInterval(async () => getTeamWorkData(), 120000);
 	}, []);
+	// data.projects.map(project => (project.open_task_count > 0 ? projectList.push(project.name) : ''));
 
 	const sorting = (col, sortingOrder1) => {
 		if (col === 'tasks_count' || col === 'completed_todo') {
@@ -279,6 +283,7 @@ const TeamWork = ({
 	const handleCloseDeleteModal = () => {
 		setOpenDeleteModal(false);
 	};
+	// console.log("CP",clientProject);
 
 	return (
 		<>
@@ -539,28 +544,248 @@ const TeamWork = ({
 										</tr>
 									</thead>
 									<tbody>
-										{users
-											? users.map((user, key) => {
-													return (
-														<TableRow
-															key={key}
-															img={user.avatar}
-															user_id={user.user_id}
-															tasks={user.tasks_count}
-															name={user.name}
-															active={user.active_count}
-															active_todo={user.active_todo_count}
-															projects={user.project_ids}
-															completed_todo={user.completed_todo}
-															last_active_at={user.last_active_at}
-															projectsdata={projects}
-															data={data.users}
-															getTeamWorkData={getTeamWorkData}
-															setLoading={setLoading}
-														/>
-													);
-											  })
-											: ''}
+										{tabSection === 'playGround' ? (
+											<>
+												<h2 style={{ width: '125%', marginBottom: '20px' }}>
+													{' '}
+													Client Project Members
+												</h2>
+												{users
+													.filter(user => !user.project_ids.includes(23190856))
+													.map((user, key) => {
+														return (
+															<TableRow
+																key={key}
+																img={user.avatar}
+																user_id={user.user_id}
+																tasks={user.tasks_count}
+																name={user.name}
+																active={user.active_count}
+																active_todo={user.active_todo_count}
+																projects={user.project_ids}
+																completed_todo={user.completed_todo}
+																last_active_at={user.last_active_at}
+																projectsdata={projects}
+																data={data.users}
+																getTeamWorkData={getTeamWorkData}
+																setLoading={setLoading}
+															/>
+														);
+													})}
+
+												<h2 style={{ marginBottom: '20px' }}>Redwing Members</h2>
+												{/* // <span></span> */}
+												{users
+													.filter(
+														user =>
+															user.project_ids[0] === 23190856 && user.project_ids.length === 1
+													)
+													.map((user, key) => {
+														return (
+															<TableRow
+																key={key}
+																img={user.avatar}
+																user_id={user.user_id}
+																tasks={user.tasks_count}
+																name={user.name}
+																active={user.active_count}
+																active_todo={user.active_todo_count}
+																projects={user.project_ids}
+																completed_todo={user.completed_todo}
+																last_active_at={user.last_active_at}
+																projectsdata={projects}
+																data={data.users}
+																getTeamWorkData={getTeamWorkData}
+																setLoading={setLoading}
+															/>
+														);
+													})}
+											</>
+										) : tabSection === 'project-seg' ? (
+											<>
+												<h2 style={{ width: '125%', marginBottom: '20px' }}>
+													{' '}
+													Multitasking Members
+												</h2>
+												{users
+													.filter(user => user.project_ids.length > 1)
+													.map((user, key) => {
+														return (
+															<TableRow
+																key={key}
+																img={user.avatar}
+																user_id={user.user_id}
+																tasks={user.tasks_count}
+																name={user.name}
+																active={user.active_count}
+																active_todo={user.active_todo_count}
+																projects={user.project_ids}
+																completed_todo={user.completed_todo}
+																last_active_at={user.last_active_at}
+																projectsdata={projects}
+																data={data.users}
+																getTeamWorkData={getTeamWorkData}
+																setLoading={setLoading}
+															/>
+														);
+													})}
+
+												<h2 style={{ width: '145%', marginBottom: '20px' }}>
+													{' '}
+													Project list with Members
+												</h2>
+												{users
+													.filter(project => project.open_task_count > 0)
+													.map((user, key) => {
+														return (
+															<TableRow
+																key={key}
+																img={user.avatar}
+																user_id={user.user_id}
+																tasks={user.tasks_count}
+																name={projects.name}
+																active={user.active_count}
+																active_todo={user.active_todo_count}
+																projects={user.project_ids}
+																completed_todo={user.completed_todo}
+																last_active_at={user.last_active_at}
+																projectsdata={projects}
+																data={data.users}
+																getTeamWorkData={getTeamWorkData}
+																setLoading={setLoading}
+															/>
+														);
+													})}
+												<h2 style={{ width: '125%', marginBottom: '20px' }}> Idle Members</h2>
+												{users
+													.filter(user => user.tasks_count === 0)
+													.map((user, key) => {
+														return (
+															<TableRow
+																key={key}
+																img={user.avatar}
+																user_id={user.user_id}
+																tasks={user.tasks_count}
+																name={user.name}
+																active={user.active_count}
+																active_todo={user.active_todo_count}
+																projects={user.project_ids}
+																completed_todo={user.completed_todo}
+																last_active_at={user.last_active_at}
+																projectsdata={projects}
+																data={data.users}
+																getTeamWorkData={getTeamWorkData}
+																setLoading={setLoading}
+															/>
+														);
+													})}
+											</>
+										) : tabSection === 'performance-seg' ? (
+											<>
+												<h2 style={{ width: '125%', marginBottom: '20px' }}>
+													{' '}
+													Member with 5+ Ticks
+												</h2>
+												{users
+													.filter(user => user.completed_todo > 5)
+													.map((user, key) => {
+														return (
+															<TableRow
+																key={key}
+																img={user.avatar}
+																user_id={user.user_id}
+																tasks={user.tasks_count}
+																name={user.name}
+																active={user.active_count}
+																active_todo={user.active_todo_count}
+																projects={user.project_ids}
+																completed_todo={user.completed_todo}
+																last_active_at={user.last_active_at}
+																projectsdata={projects}
+																data={data.users}
+																getTeamWorkData={getTeamWorkData}
+																setLoading={setLoading}
+															/>
+														);
+													})}
+
+												<h2 style={{ width: '155%', marginBottom: '20px' }}>
+													{' '}
+													Member with less than 5 Ticks
+												</h2>
+												{users
+													.filter(user => user.completed_todo < 5)
+													.map((user, key) => {
+														return (
+															<TableRow
+																key={key}
+																img={user.avatar}
+																user_id={user.user_id}
+																tasks={user.tasks_count}
+																name={user.name}
+																active={user.active_count}
+																active_todo={user.active_todo_count}
+																projects={user.project_ids}
+																completed_todo={user.completed_todo}
+																last_active_at={user.last_active_at}
+																projectsdata={projects}
+																data={data.users}
+																getTeamWorkData={getTeamWorkData}
+																setLoading={setLoading}
+															/>
+														);
+													})}
+												<h2 style={{ width: '135%', marginBottom: '20px' }}>
+													{' '}
+													Member with 0 Ticks
+												</h2>
+												{users
+													.filter(user => user.completed_todo === 0)
+													.map((user, key) => {
+														return (
+															<TableRow
+																key={key}
+																img={user.avatar}
+																user_id={user.user_id}
+																tasks={user.tasks_count}
+																name={user.name}
+																active={user.active_count}
+																active_todo={user.active_todo_count}
+																projects={user.project_ids}
+																completed_todo={user.completed_todo}
+																last_active_at={user.last_active_at}
+																projectsdata={projects}
+																data={data.users}
+																getTeamWorkData={getTeamWorkData}
+																setLoading={setLoading}
+															/>
+														);
+													})}
+											</>
+										) : users ? (
+											users.map((user, key) => {
+												return (
+													<TableRow
+														key={key}
+														img={user.avatar}
+														user_id={user.user_id}
+														tasks={user.tasks_count}
+														name={user.name}
+														active={user.active_count}
+														active_todo={user.active_todo_count}
+														projects={user.project_ids}
+														completed_todo={user.completed_todo}
+														last_active_at={user.last_active_at}
+														projectsdata={projects}
+														data={data.users}
+														getTeamWorkData={getTeamWorkData}
+														setLoading={setLoading}
+													/>
+												);
+											})
+										) : (
+											''
+										)}
 									</tbody>
 									<BelowTeamWork />
 								</table>
@@ -753,6 +978,8 @@ const TeamWork = ({
 };
 
 const TableRow = props => {
+	console.log('PROPS : ', props);
+	let cliName;
 	const getProjectname = projectid => {
 		for (let i = 0; i < props.projectsdata.length; i++) {
 			if (props.projectsdata[i].project_id === projectid) {
@@ -854,6 +1081,7 @@ const TableRow = props => {
 								rel='noreferrer'
 							>
 								{props.name.split(' ')[0]}{' '}
+								{/* {props.isRedwing && props.data.map((ele)=> (ele.project_ids.includes(23190856)) ? ele.name.split(' ')[0] + " " : " ")} */}
 							</a>
 							{/* ?{props.name === 'red'}:{props.name} */}
 						</Grid>

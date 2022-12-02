@@ -4,9 +4,25 @@ import styles from './BigDashboard.module.css';
 import { TopStatistics } from './TopStatistics';
 import ProjectsColumn from './ProjectsColumn';
 import ActivitiesColumn from './ActivitiesColumn';
+import Segmenttion from './Segmenttion';
 import moment from 'moment';
 import axios from 'axios';
 import './style.css';
+// import * as React from 'react';
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+// import TeamWork from 'screens/TeamWork/TeamWork';
+import TeamWork2 from '../TeamWork/TeamWork2';
+// import PropTypes from 'prop-types';
+// import Tabs from '@mui/material/Tabs';
+// import Tab from '@mui/material/Tab';
+// import Typography from '@mui/material/Typography';
+// import Box from '@mui/material/Box';
+// import TeamWork from 'screens/TeamWork/TeamWork';
+// import TeamWork2 from '../TeamWork/TeamWork2';
 
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
@@ -42,6 +58,7 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 		setIsActive2(!isActive2);
 		// setStyle('max');
 	};
+	
 	const [totalTickets, setTotalTickets] = useState(0);
 	const [completedTask, setCompletedTask] = useState(0);
 	const [sleepingTask, setSleepingTask] = useState(0);
@@ -151,9 +168,11 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 	return (
 		<>
 			<div className={styles.bigdashboard}>
+
 				<Helmet>
 					<meta name='apple-mobile-web-app-capable' content='yes' />
 				</Helmet>
+
 				{/* <div className='bg-teamWork'> */}
 					<div
 						// className={styles.teamWork}
@@ -173,6 +192,9 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 						// }}
 						// onClick={handleClick}
 					>
+			{/* <Segmenttion/> */}
+
+
 						<div className={styles.outertopStatisticsBar}>
 							<div className={styles.topStatisticsBarTeam}>
 								{/* <div className={styles.topStatsContainer}> */}
@@ -207,15 +229,17 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 								/>
 							</div>
 						</div>
-						<div className={styles.alignTeamContent}>
-							<TeamWork
-								isInverted={false}
-								screenIndex={2}
-								showTeamTabTop={false}
-								showTabComponent={false}
-								showActionButtons={false}
-							/>
-						</div>
+			         <Segmenttion/>
+
+			{/* <div className={styles.alignTeamContent}> */}
+							{/* <TeamWork */}
+								{/* // isInverted={false} */}
+								{/* // screenIndex={2} */}
+								{/* // showTeamTabTop={false} */}
+								{/* // showTabComponent={false} */}
+								{/* // showActionButtons={false} */}
+							{/* // /> */}
+						{/* </div> */}
 					</div>
 				{/* </div> */}
 				{/* <div className='bg-activity'> */}
@@ -283,7 +307,9 @@ const BigDashboard = ({ selectedProject, setSelectedProject, timer }) => {
 				{/* </div> */}
 			</div>
 			{/* <BelowTeamWork /> */}
+			{/* <Segmenttion /> */}
 			<div className='big-dashboard-footer' style={{ margin: '1rem' }}>
+				{/* <Segmenttion /> */}
 				<Link to='/homepage' onClick={scrollTop}>
 					Go to Homepage
 				</Link>
