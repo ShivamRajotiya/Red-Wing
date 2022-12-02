@@ -682,7 +682,7 @@ const TeamWork = ({
 											</>
 										) : tabSection === 'performance-seg' ? (
 											<>
-												<h2 style={{ width: '125%', marginBottom: '20px' }}>
+												<h2 style={{ width: '145%', marginBottom: '20px' }}>
 													{' '}
 													Member with 5+ Ticks
 												</h2>
@@ -709,7 +709,7 @@ const TeamWork = ({
 														);
 													})}
 
-												<h2 style={{ width: '155%', marginBottom: '20px' }}>
+												<h2 style={{ width: '165%', marginBottom: '20px' }}>
 													{' '}
 													Member with less than 5 Ticks
 												</h2>
