@@ -546,9 +546,10 @@ const TeamWork = ({
 									<tbody>
 										{tabSection === 'playGround' ? (
 											<>
-												<h2 style={{ width: '125%', marginBottom: '20px' }}>
-													{' '}
-													Client Project Members
+												<h2 style={{ width: '145%', marginBottom: '30px' }}>
+													{/* {' '} */}
+													{users.filter(user => !user.project_ids.includes(23190856)).length} Client
+													Project Members
 												</h2>
 												{users
 													.filter(user => !user.project_ids.includes(23190856))
@@ -573,8 +574,16 @@ const TeamWork = ({
 														);
 													})}
 
-												<h2 style={{ marginBottom: '20px' }}>Redwing Members</h2>
-												{/* // <span></span> */}
+												<h2 style={{ width: '135%', marginBottom: '30px' }}>
+													{
+														users.filter(
+															user =>
+																user.project_ids[0] === 23190856 && user.project_ids.length === 1
+														).length
+													}{' '}
+													Redwing Member
+												</h2>
+
 												{users
 													.filter(
 														user =>
@@ -603,9 +612,9 @@ const TeamWork = ({
 											</>
 										) : tabSection === 'project-seg' ? (
 											<>
-												<h2 style={{ width: '125%', marginBottom: '20px' }}>
-													{' '}
-													Multitasking Members
+												<h2 style={{ width: '125%', marginBottom: '30px' }}>
+													{users.filter(user => user.project_ids.length > 1).length} Multitasking
+													Members
 												</h2>
 												{users
 													.filter(user => user.project_ids.length > 1)
@@ -630,12 +639,12 @@ const TeamWork = ({
 														);
 													})}
 
-												<h2 style={{ width: '145%', marginBottom: '20px' }}>
-													{' '}
-													Project list with Members
+												<h2 style={{ width: '145%', marginBottom: '30px' }}>
+													{users.filter(user => user.project_ids.length === 1).length} Members with
+													their Specific Project
 												</h2>
 												{users
-													.filter(project => project.open_task_count > 0)
+													.filter(user => user.project_ids.length === 1)
 													.map((user, key) => {
 														return (
 															<TableRow
@@ -643,7 +652,7 @@ const TeamWork = ({
 																img={user.avatar}
 																user_id={user.user_id}
 																tasks={user.tasks_count}
-																name={projects.name}
+																name={user.name}
 																active={user.active_count}
 																active_todo={user.active_todo_count}
 																projects={user.project_ids}
@@ -656,7 +665,10 @@ const TeamWork = ({
 															/>
 														);
 													})}
-												<h2 style={{ width: '125%', marginBottom: '20px' }}> Idle Members</h2>
+												<h2 style={{ width: '125%', marginBottom: '30px' }}>
+													{' '}
+													{users.filter(user => user.tasks_count === 0).length}Idle Members
+												</h2>
 												{users
 													.filter(user => user.tasks_count === 0)
 													.map((user, key) => {
@@ -682,9 +694,9 @@ const TeamWork = ({
 											</>
 										) : tabSection === 'performance-seg' ? (
 											<>
-												<h2 style={{ width: '145%', marginBottom: '20px' }}>
-													{' '}
-													Member with 5+ Ticks
+												<h2 style={{ width: '145%', marginBottom: '30px' }}>
+													{users.filter(user => user.completed_todo > 5).length} Member with 5+
+													Ticks
 												</h2>
 												{users
 													.filter(user => user.completed_todo > 5)
@@ -709,8 +721,11 @@ const TeamWork = ({
 														);
 													})}
 
-												<h2 style={{ width: '165%', marginBottom: '20px' }}>
-													{' '}
+												<h2 style={{ width: '165%', marginBottom: '30px' }}>
+													{
+														users.filter(user => user.completed_todo < 6 && user.completed_todo > 0)
+															.length
+													}{' '}
 													Member with less than 5 Ticks
 												</h2>
 												{users
@@ -735,9 +750,9 @@ const TeamWork = ({
 															/>
 														);
 													})}
-												<h2 style={{ width: '135%', marginBottom: '20px' }}>
-													{' '}
-													Member with 0 Ticks
+												<h2 style={{ width: '135%', marginBottom: '30px' }}>
+													{users.filter(user => user.completed_todo === 0).length} Member with 0
+													Ticks
 												</h2>
 												{users
 													.filter(user => user.completed_todo === 0)
@@ -979,7 +994,6 @@ const TeamWork = ({
 
 const TableRow = props => {
 	console.log('PROPS : ', props);
-	let cliName;
 	const getProjectname = projectid => {
 		for (let i = 0; i < props.projectsdata.length; i++) {
 			if (props.projectsdata[i].project_id === projectid) {
@@ -1215,6 +1229,7 @@ const TableRow = props => {
 								return <div>{projectname}</div>;
 							})}
 						</div>
+						
 					</p>
 				</td>
 			</tr>
